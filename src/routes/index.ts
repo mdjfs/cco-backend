@@ -123,7 +123,9 @@ router.get("/product", auth, async (req: UserRequest, res) => {
     const products = await Product.get(
       page ? parseInt(page as string) : undefined,
       pageSize ? parseInt(pageSize as string) : undefined,
-      order ? [[order as string, "DESC"]] : undefined,
+      order
+        ? (order as string).split(",").map((value) => [value, "DESC"])
+        : undefined,
       filterArray.length > 0 ? filterArray : undefined
     );
     res.status(200).send(products);
