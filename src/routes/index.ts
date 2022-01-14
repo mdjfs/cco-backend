@@ -48,6 +48,17 @@ router.get("/picture", auth, async (req: UserRequest, res) => {
   }
 });
 
+router.get("/pictureById", async (req: UserRequest, res) => {
+  try {
+    const { id } = req.query;
+    const user = await User.read({ id: parseInt(id as string) });
+    res.setHeader("Content-Type", user.pictureMimetype);
+    res.status(200).send(user.picture);
+  } catch (e) {
+    res.status(500).send(e.message);
+  }
+});
+
 router.post(
   "/picture",
   auth,
