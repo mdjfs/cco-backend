@@ -7,7 +7,8 @@
     "start": "npm run start:prod",
     "start:prod": "npx ts-node src/server.ts",
     "start:dev": "nodemon --watch 'src/**/*.ts' --ignore 'src/**/*.spec.ts' --exec 'npx ts-node' src/server.ts",
-    "db": "npx ts-node src/database/cli.ts"
+    "db": "npx ts-node src/database/cli.ts",
+    "postinstall": "npm db restart"
   },
   "author": "",
   "license": "ISC",
