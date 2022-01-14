@@ -132,7 +132,7 @@ router.get("/product", auth, async (req: UserRequest, res) => {
   }
 });
 
-router.get("/product/image", auth, async (req: UserRequest, res) => {
+router.get("/product/image", async (req: UserRequest, res) => {
   try {
     const { id } = req.query;
     const product = await Product.getById(parseInt(id as string));
