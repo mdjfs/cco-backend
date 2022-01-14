@@ -50,7 +50,7 @@ export default class Product extends Model {
   @Column
   imageMimetype: string;
 
-  static async paginate({ page = 1, paginate = 25, ...params } = {}) {
+  static async paginate({ page = 1, pageSize = 25, ...params } = {}) {
     const options: PaginationOptions = Object.assign({}, params);
     const countOptions = Object.keys(options).reduce((acc, key) => {
       if (!["order", "attributes", "include"].includes(key)) {
@@ -67,9 +67,9 @@ export default class Product extends Model {
       total = total.length;
     }
 
-    const pages = Math.ceil(total / paginate);
-    options.limit = paginate;
-    options.offset = paginate * (page - 1);
+    const pages = Math.ceil(total / pageSize);
+    options.limit = pageSize;
+    options.offset = pageSize * (page - 1);
     if (params["order"]) options.order = params["order"];
     const docs = await Product.findAll(options);
     return { docs, pages, total };
