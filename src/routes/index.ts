@@ -124,7 +124,7 @@ router.get("/product", auth, async (req: UserRequest, res) => {
       page ? parseInt(page as string) : undefined,
       pageSize ? parseInt(pageSize as string) : undefined,
       order
-        ? (order as string).split(",").map((value) => [value, "DESC"])
+        ? (order as string).split(",").map((value) => [value, "ASC"])
         : undefined,
       filterArray.length > 0 ? filterArray : undefined
     );
